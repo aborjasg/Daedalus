@@ -1,15 +1,14 @@
 services:
-  mysql:
-    image: mysql:8.4
+  postgres:
+    image: postgres:16
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-daedalus}
-      MYSQL_USER: ${MYSQL_USER:-daedalus}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-daedalus}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-daedalus}
+      POSTGRES_USER: ${DB_USER:-daedalus}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-daedalus}
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
-  mysql-data:
+  postgres-data:

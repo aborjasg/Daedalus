@@ -1,7 +1,7 @@
 # Infrastructure
 
-Local development infrastructure lives here. Start MySQL with:
+Local development infrastructure lives here. Start PostgreSQL with:
 
 ```bash
-docker compose -f infrastructure/docker-compose.yml up -d mysql
+docker compose -f infrastructure/docker-compose.yml up -d postgres
 ```
