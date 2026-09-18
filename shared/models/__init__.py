@@ -1,6 +1,6 @@
 """Plain shared data models derived from the Daedalus control-panel ERD."""
 
-from .audit_log import AuditLog
+from ..logging.audit_log import AuditLog
 from .company import Company
 from .integration import Integration
 from .integration_secret import IntegrationSecret
@@ -9,7 +9,7 @@ from .module_setting import ModuleSetting
 from .permission import Permission
 from .role import Role
 from .role_permission import RolePermission
-from .system_event import SystemEvent
+from ..logging.system_event import SystemEvent
 from .tenant import Tenant
 from .tenant_integration import TenantIntegration
 from .tenant_module import TenantModule
