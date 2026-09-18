@@ -17,7 +17,7 @@ services/
   notifications-api/ Email, SMS, and in-app notifications
 web/                 Flask server-rendered web application
 shared/              Small cross-service infrastructure utilities
-infrastructure/      Docker Compose, MySQL, and reverse proxy setup
+infrastructure/      Docker Compose, PostgreSQL, and reverse proxy setup
 ```
 
 Each service follows the same MVC-oriented layout:
