@@ -15,19 +15,21 @@ services/
   jobs-api/          Job execution, checklists, and tracking
   payments-api/      Payment and invoice integration
   notifications-api/ Email, SMS, and in-app notifications
-web/                 Flask server-rendered web application
+web/                 Django server-rendered web application
 shared/              Small cross-service infrastructure utilities
 infrastructure/      Docker Compose, PostgreSQL, and reverse proxy setup
 ```
 
-Each service follows the same MVC-oriented layout:
+The services follow the same MVC-oriented layout:
 
 ```text
 app/
   controllers/       Request/response coordination
   models/            SQLAlchemy persistence models
   repositories/      Database access
-  routes/            Flask blueprints and URL registration
+  routes/            HTTP route registration
   schemas/           Request validation and serialization
   services/          Business logic
 ```
+
+Each Django project uses `settings.py`, `urls.py`, and `wsgi.py`.
