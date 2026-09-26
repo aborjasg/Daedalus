@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "local-development-only")
 DEBUG = os.environ.get("DJANGO_DEBUG", "false").lower() == "true"
@@ -24,3 +23,11 @@ DATABASES = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Secret management settings
+
+ENV = os.getenv("APP_ENV")  # dev | test | stg | prod
+
+
+   
+    

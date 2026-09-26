@@ -4,11 +4,34 @@ services:
     environment:
       POSTGRES_DB: ${DB_NAME:-daedalus}
       POSTGRES_USER: ${DB_USER:-daedalus}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-daedalus}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-daedalus}          
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  auth-api:
+    build: ../services/auth-api
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: "dev"
+      SCOPE: "https://vault.azure.net/.default"
+      REDIRECT_URI: "http://localhost:5000/callback"
+      TENANT_ID_FILE: /run/secrets/tenant_id
+      CLIENT_ID_FILE: /run/secrets/client_id
+      CLIENT_SECRET_FILE: /run/secrets/client_secret
+    secrets:
+      - tenant_id
+      - client_id
+      - client_secret    
+
+secrets:
+  tenant_id:
+    file: ./secrets/tenant_id
+  client_id:
+    file: ./secrets/client_id
+  client_secret:
+    file: ./secrets/client_secret    
 volumes:
   postgres-data:
