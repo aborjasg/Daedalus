@@ -26,8 +26,31 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Secret management settings
 
-ENV = os.getenv("APP_ENV")  # dev | test | stg | prod
+APP_ENV = os.getenv('APP_ENV') # dev | test | stg | prod
 
+TENANT_ID_FILE = os.getenv("TENANT_ID_FILE")
+TENANT_ID = (
+    Path(TENANT_ID_FILE).read_text(encoding="utf-8").rstrip("\r\n")
+    if TENANT_ID_FILE
+    else os.getenv("TENANT_ID")
+)
 
-   
-    
+CLIENT_ID_FILE = os.getenv("CLIENT_ID_FILE")
+CLIENT_ID = (
+    Path(CLIENT_ID_FILE).read_text(encoding="utf-8").rstrip("\r\n")
+    if CLIENT_ID_FILE
+    else os.getenv("CLIENT_ID")
+)
+
+CLIENT_SECRET_FILE = os.getenv("CLIENT_SECRET_FILE")
+CLIENT_SECRET = (
+    Path(CLIENT_SECRET_FILE).read_text(encoding="utf-8").rstrip("\r\n")
+    if CLIENT_SECRET_FILE
+    else os.getenv("CLIENT_SECRET")
+)
+
+SCOPE = os.getenv("SCOPE")
+GRANT_TYPE = os.getenv("GRANT_TYPE")
+AUTHORIZE_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/authorize"
+TOKEN_URL = f"https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token"
+REDIRECT_URI = os.getenv("REDIRECT_URI")

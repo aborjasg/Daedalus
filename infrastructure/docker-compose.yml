@@ -11,12 +11,15 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   auth-api:
-    build: ../services/auth-api
+    build:
+      context: ..
+      dockerfile: services/auth-api/Dockerfile
     ports:
       - "8000:8000"
     environment:
       APP_ENV: "dev"
       SCOPE: "https://vault.azure.net/.default"
+      GRANT_TYPE: "client_credentials"
       REDIRECT_URI: "http://localhost:5000/callback"
       TENANT_ID_FILE: /run/secrets/tenant_id
       CLIENT_ID_FILE: /run/secrets/client_id
