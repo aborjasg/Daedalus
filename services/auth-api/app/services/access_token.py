@@ -1,7 +1,7 @@
 import requests
 import jwt
 from pathlib import Path
-from shared.http.access_token import AccessToken
+from app.models.access_token import AccessToken
 
 class AccessTokenService:
 
@@ -49,6 +49,6 @@ class AccessTokenService:
             print(f"Error obtaining access token: {e}")
             return e
         
-        return response.json()
+        return response
 
 
