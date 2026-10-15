@@ -4,10 +4,10 @@ from django.urls import include, path
 from functools import wraps
 from django.views.decorators.http import require_GET
 
-# from app.services.access_token import AccessTokenService
-# from app.models.access_token import AccessToken
+from app.models.access_token import AccessToken
+from app.services.access_token import AccessTokenService
 from shared.http.action_response import ActionResponse
-# from shared.http.error_response import ErrorResponse
+from shared.http.error_response import ErrorResponse
 
 # def protected_route(view_func):
 #     @wraps(view_func)
@@ -26,29 +26,29 @@ def health(request: HttpRequest) -> JsonResponse:
     return ActionResponse("auth-api", "health", "", "OK").to_json()
     
 
-# @require_GET
-# def token(request: HttpRequest) -> JsonResponse:    
-#     print(f"setting: {settings}")
-#     output = None
-#     errors = []
+@require_GET
+def token(request: HttpRequest) -> JsonResponse:
+    print(f"setting: {settings}")
+    output = None
+    errors = []
 
-#     try:
-#         access_token_service = AccessTokenService()
-#         output = access_token_service.get_access_token(
-#             AccessToken(
-#                 token_url=settings.TOKEN_URL,
-#                 client_id=settings.CLIENT_ID,
-#                 client_secret=settings.CLIENT_SECRET,
-#                 scope=settings.SCOPE,
-#                 grant_type=settings.GRANT_TYPE
-#             )
-#         )
-#     except Exception as e:
-#         errors = [ErrorResponse("ERR_ACCESS_TOKEN", "Error obtaining access token", e)]
+    try:
+        access_token_service = AccessTokenService()
+        output = access_token_service.get_access_token(
+            AccessToken(
+                token_url=settings.TOKEN_URL,
+                client_id=settings.CLIENT_ID,
+                client_secret=settings.CLIENT_SECRET,
+                scope=settings.SCOPE,
+                grant_type=settings.GRANT_TYPE
+            )
+        )
+    except Exception as e:
+        errors = [ErrorResponse("ERR_ACCESS_TOKEN", "Error obtaining access token", e)]
 
-#     success = output is not None and len(errors) == 0
+    success = output is not None and len(errors) == 0
     
-#     return ActionResponse(service="auth-api|access_token", success=success, data=output, errors=errors).to_json()
+    return ActionResponse(service="auth-api|access_token", success=success, data=output, errors=errors).to_json()
 
 
 # @protected_route
