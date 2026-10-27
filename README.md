@@ -9,6 +9,7 @@ deployable and owns its application code, migrations, tests, and dependencies.
 ```text
 services/
   auth-api/          Authentication and authorization
+  quotes-api/        Tenant-scoped quote estimates and pricing rules
   customers-api/     Customer and address management
   bookings-api/      Cleaning booking lifecycle
   scheduling-api/    Staff, availability, and assignments

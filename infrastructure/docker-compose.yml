@@ -29,6 +29,16 @@ services:
       - client_id
       - client_secret    
 
+  quotes-api:
+    build:
+      context: ..
+      dockerfile: services/quotes-api/Dockerfile
+    ports:
+      - "8001:8000"
+    environment:
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+
 secrets:
   tenant_id:
     file: ./secrets/tenant_id
