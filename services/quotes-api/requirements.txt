@@ -1,2 +1,4 @@
 Django>=5.2,<6.0
 gunicorn>=23.0,<24.0
+azure-ai-projects
+azure-identity
